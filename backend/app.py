@@ -192,9 +192,9 @@ def process_video():
     y detectando violencia con TimeSformer.
     """
     logger.info("Iniciando process_video")
-    cap = cv2.VideoCapture("http://838b-2800-cd0-c332-9400-34f8-c9f8-bce9-e00e.ngrok-free.app/video")
+    cap = cv2.VideoCapture("http://7156-2800-cd0-c332-9400-34f8-c9f8-bce9-e00e.ngrok-free.app/video")
     # cap = cv2.VideoCapture("/root/violence-detection-prototype/backend/videos/fight_0620_004.mp4")
-    # cap = cv2.VideoCapture("http://192.168.182.131:8080/video")
+    # cap = cv2.VideoCapture("http://192.168.1.4:8080/video")
     if not cap.isOpened():
         logger.error("No se pudo abrir la cámara. Estado de apertura: %s", str(cap.isOpened()))
         return

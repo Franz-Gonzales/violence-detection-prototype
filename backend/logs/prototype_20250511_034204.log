@@ -1,0 +1,35 @@
+2025-05-11 03:42:04,643 - INFO - Flask y SocketIO inicializados
+2025-05-11 03:42:04,683 - INFO - Firestore inicializado correctamente
+2025-05-11 03:42:04,723 - INFO - Modelo YOLOv8 cargado correctamente
+2025-05-11 03:42:06,222 - INFO - MobileNetV2 Embedder for Deep Sort initialised
+2025-05-11 03:42:06,222 - INFO - - gpu enabled: False
+2025-05-11 03:42:06,222 - INFO - - half precision: False
+2025-05-11 03:42:06,223 - INFO - - max batch size: 16
+2025-05-11 03:42:06,223 - INFO - - expects BGR: True
+2025-05-11 03:42:06,280 - INFO - DeepSort Tracker initialised
+2025-05-11 03:42:06,290 - INFO - - max age: 30
+2025-05-11 03:42:06,290 - INFO - - appearance threshold: 0.2
+2025-05-11 03:42:06,291 - INFO - - nms threshold: OFF
+2025-05-11 03:42:06,291 - INFO - - max num of appearance features: None
+2025-05-11 03:42:06,291 - INFO - - overriding track class : No
+2025-05-11 03:42:06,291 - INFO - - today given : No
+2025-05-11 03:42:06,291 - INFO - - in-build embedder : Yes
+2025-05-11 03:42:06,292 - INFO - - polygon detections : No
+2025-05-11 03:42:06,292 - INFO - DeepSort inicializado correctamente
+2025-05-11 03:42:07,513 - INFO - Modelo TimeSformer cargado correctamente
+2025-05-11 03:42:07,514 - INFO - Usando dispositivo: cpu
+2025-05-11 03:42:07,515 - INFO - Iniciando servidor Flask en puerto 5000
+2025-05-11 03:42:07,527 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.6:5000
+2025-05-11 03:42:07,528 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-11 03:45:02,201 - INFO - 192.168.1.6 - - [11/May/2025 03:45:02] "GET /socket.io/?EIO=4&transport=polling&t=cmmlggz8 HTTP/1.1" 200 -
+2025-05-11 03:45:03,659 - INFO - Cliente conectado
+2025-05-11 03:45:03,663 - INFO - Iniciando process_video
+2025-05-11 03:45:03,663 - INFO - 192.168.1.6 - - [11/May/2025 03:45:03] "POST /socket.io/?EIO=4&transport=polling&t=cmnx781b&sid=kex2geaLZ31qgCmQAAAA HTTP/1.1" 200 -
+2025-05-11 03:45:03,664 - INFO - 192.168.1.6 - - [11/May/2025 03:45:03] "GET /socket.io/?EIO=4&transport=polling&t=cmnx8fm4&sid=kex2geaLZ31qgCmQAAAA HTTP/1.1" 200 -
+2025-05-11 03:45:03,968 - INFO - 192.168.1.6 - - [11/May/2025 03:45:03] "GET /socket.io/?EIO=4&transport=polling&t=cmo5zef0&sid=kex2geaLZ31qgCmQAAAA HTTP/1.1" 200 -
+2025-05-11 03:45:05,435 - INFO - Cámara abierta exitosamente
+2025-05-11 03:45:05,436 - INFO - FPS real de la cámara: 25.0
+2025-05-11 03:45:05,436 - INFO - Parámetros ajustados - FPS: 25.0, CLIP_FRAMES: 250, STRIDE_FRAMES: 50

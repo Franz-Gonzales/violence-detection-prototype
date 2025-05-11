@@ -24,7 +24,7 @@ import "./App.css";
 // 190.210.127.129 : 34677 -> 22
 // const socket = io("http://190.210.127.129:5000");
 // const socket = io("http://192.168.1.6:5000");
-const socket = io("http://157.157.221.30:5000");
+const socket = io("http://192.168.1.6:5000");
 // const socket = io("http://10.128.1.2:5000");
 
 function App() {
