@@ -1,4 +1,5 @@
 .venv
+venv
 backend/models
 backend/videos
 frontend/build

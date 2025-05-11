@@ -1,0 +1,36 @@
+2025-05-11 05:03:01,115 - INFO - Flask y SocketIO inicializados
+2025-05-11 05:03:01,156 - INFO - Firestore inicializado correctamente
+2025-05-11 05:03:01,205 - INFO - Modelo YOLOv8 cargado correctamente
+2025-05-11 05:03:02,643 - INFO - MobileNetV2 Embedder for Deep Sort initialised
+2025-05-11 05:03:02,643 - INFO - - gpu enabled: True
+2025-05-11 05:03:02,643 - INFO - - half precision: True
+2025-05-11 05:03:02,643 - INFO - - max batch size: 16
+2025-05-11 05:03:02,644 - INFO - - expects BGR: True
+2025-05-11 05:03:03,099 - INFO - DeepSort Tracker initialised
+2025-05-11 05:03:03,099 - INFO - - max age: 30
+2025-05-11 05:03:03,099 - INFO - - appearance threshold: 0.2
+2025-05-11 05:03:03,099 - INFO - - nms threshold: OFF
+2025-05-11 05:03:03,099 - INFO - - max num of appearance features: None
+2025-05-11 05:03:03,099 - INFO - - overriding track class : No
+2025-05-11 05:03:03,099 - INFO - - today given : No
+2025-05-11 05:03:03,100 - INFO - - in-build embedder : Yes
+2025-05-11 05:03:03,100 - INFO - - polygon detections : No
+2025-05-11 05:03:03,100 - INFO - DeepSort inicializado correctamente
+2025-05-11 05:03:04,835 - INFO - Modelo TimeSformer cargado correctamente
+2025-05-11 05:03:04,835 - INFO - Usando dispositivo: cuda
+2025-05-11 05:03:04,836 - INFO - Iniciando servidor Flask en puerto 5000
+2025-05-11 05:03:04,837 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.128.1.2:5000
+2025-05-11 05:03:04,837 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-11 05:03:11,545 - INFO - 127.0.0.1 - - [11/May/2025 05:03:11] "[36mGET / HTTP/1.1[0m" 304 -
+2025-05-11 05:03:11,979 - INFO - 127.0.0.1 - - [11/May/2025 05:03:11] "[36mGET /static/static/js/main.6b9da38e.js HTTP/1.1[0m" 304 -
+2025-05-11 05:03:13,224 - INFO - 127.0.0.1 - - [11/May/2025 05:03:13] "[36mGET /static/static/css/main.05187385.css HTTP/1.1[0m" 304 -
+2025-05-11 05:03:16,086 - INFO - 127.0.0.1 - - [11/May/2025 05:03:16] "[36mGET / HTTP/1.1[0m" 304 -
+2025-05-11 05:03:17,599 - INFO - 127.0.0.1 - - [11/May/2025 05:03:17] "[36mGET / HTTP/1.1[0m" 304 -
+2025-05-11 05:03:27,874 - INFO - 127.0.0.1 - - [11/May/2025 05:03:27] "[36mGET / HTTP/1.1[0m" 304 -
+2025-05-11 05:03:28,340 - INFO - 127.0.0.1 - - [11/May/2025 05:03:28] "[36mGET /static/static/js/main.6b9da38e.js HTTP/1.1[0m" 304 -
+2025-05-11 05:03:29,535 - INFO - 127.0.0.1 - - [11/May/2025 05:03:29] "[36mGET /static/static/css/main.05187385.css HTTP/1.1[0m" 304 -
+2025-05-11 05:03:31,603 - INFO - 127.0.0.1 - - [11/May/2025 05:03:31] "[36mGET / HTTP/1.1[0m" 304 -
+2025-05-11 05:03:33,165 - INFO - 127.0.0.1 - - [11/May/2025 05:03:33] "[36mGET / HTTP/1.1[0m" 304 -

@@ -23,7 +23,9 @@ import "./App.css";
 // Conectar al backend en RunPod
 // 190.210.127.129 : 34677 -> 22
 // const socket = io("http://190.210.127.129:5000");
-const socket = io("http://192.168.1.6:5000");
+// const socket = io("http://192.168.1.6:5000");
+const socket = io("http://157.157.221.30:5000");
+// const socket = io("http://10.128.1.2:5000");
 
 function App() {
   const [frame, setFrame] = useState(null);
@@ -32,14 +34,20 @@ function App() {
   const [isDetecting, setIsDetecting] = useState(false);
 
   useEffect(() => {
+
+    socket.on("connect", () => {
+      console.log("Conectado al backend vía SocketIO");
+    });
+    socket.on("connect_error", (error) => {
+      console.error("Error de conexión SocketIO:", error);
+    });
     // Recibir frames del backend
     socket.on("frame", (frameBytes) => {
+      console.log("Frame recibido");
       const blob = new Blob([frameBytes], { type: "image/jpeg" });
       const url = URL.createObjectURL(blob);
       setFrame(url);
     });
-
-    // Recibir notificaciones de violencia
     socket.on("violence_detected", (event) => {
       setNotification(
         `Violencia detectada a las ${event.timestamp}. IDs: ${event.ids_involved.join(", ")}`
@@ -51,9 +59,9 @@ function App() {
       const eventList = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setEvents(eventList);
     });
-
-    // Limpiar al desmontar el componente
     return () => {
+      socket.off("connect");
+      socket.off("connect_error");
       socket.off("frame");
       socket.off("violence_detected");
       unsubscribe();

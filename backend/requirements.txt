@@ -6,5 +6,5 @@ ultralytics
 deep-sort-realtime
 onnxruntime
 torch 
-# torch==1.12.1+cu117
+# torch+cu117
 firebase-admin
