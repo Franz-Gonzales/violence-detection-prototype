@@ -1,0 +1,8 @@
+.venv
+backend/models
+backend/videos
+frontend/build
+frontend/node_modules
+frontend/package-lock.json
+# Credenciales de Firebase
+backend/proyecto-ia3-ff33c-firebase-adminsdk-fbsvc-cd48c40359.json

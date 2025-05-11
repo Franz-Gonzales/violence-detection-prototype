@@ -1,0 +1,35 @@
+2025-05-10 19:42:28,547 - INFO - Flask y SocketIO inicializados
+2025-05-10 19:42:28,589 - INFO - Firestore inicializado correctamente
+2025-05-10 19:42:28,651 - INFO - Modelo YOLOv8 cargado correctamente
+2025-05-10 19:42:30,653 - INFO - MobileNetV2 Embedder for Deep Sort initialised
+2025-05-10 19:42:30,653 - INFO - - gpu enabled: False
+2025-05-10 19:42:30,654 - INFO - - half precision: False
+2025-05-10 19:42:30,654 - INFO - - max batch size: 16
+2025-05-10 19:42:30,654 - INFO - - expects BGR: True
+2025-05-10 19:42:30,762 - INFO - DeepSort Tracker initialised
+2025-05-10 19:42:30,763 - INFO - - max age: 30
+2025-05-10 19:42:30,763 - INFO - - appearance threshold: 0.2
+2025-05-10 19:42:30,764 - INFO - - nms threshold: OFF
+2025-05-10 19:42:30,764 - INFO - - max num of appearance features: None
+2025-05-10 19:42:30,764 - INFO - - overriding track class : No
+2025-05-10 19:42:30,765 - INFO - - today given : No
+2025-05-10 19:42:30,765 - INFO - - in-build embedder : Yes
+2025-05-10 19:42:30,765 - INFO - - polygon detections : No
+2025-05-10 19:42:30,765 - INFO - DeepSort inicializado correctamente
+2025-05-10 19:42:32,288 - INFO - Modelo TimeSformer cargado correctamente
+2025-05-10 19:42:32,289 - INFO - Usando dispositivo: cpu
+2025-05-10 19:42:32,289 - INFO - Iniciando servidor Flask en puerto 5000
+2025-05-10 19:42:32,318 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.6:5000
+2025-05-10 19:42:32,318 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-10 19:43:02,488 - INFO - 192.168.1.6 - - [10/May/2025 19:43:02] "GET /socket.io/?EIO=4&transport=polling&t=ves4ffdl HTTP/1.1" 200 -
+2025-05-10 19:43:03,571 - INFO - Cliente conectado
+2025-05-10 19:43:03,576 - INFO - 192.168.1.6 - - [10/May/2025 19:43:03] "POST /socket.io/?EIO=4&transport=polling&t=vet1pzxd&sid=ibaBL2RktqGvzFpWAAAA HTTP/1.1" 200 -
+2025-05-10 19:43:03,576 - INFO - 192.168.1.6 - - [10/May/2025 19:43:03] "GET /socket.io/?EIO=4&transport=polling&t=vet1qenb&sid=ibaBL2RktqGvzFpWAAAA HTTP/1.1" 200 -
+2025-05-10 19:43:03,790 - INFO - 192.168.1.6 - - [10/May/2025 19:43:03] "GET /socket.io/?EIO=4&transport=polling&t=vet7r003&sid=ibaBL2RktqGvzFpWAAAA HTTP/1.1" 200 -
+2025-05-10 19:43:04,122 - INFO - FPS real de la cámara: 25.0
+2025-05-10 19:43:04,123 - INFO - Parámetros ajustados - FPS: 25.0, CLIP_FRAMES: 250, STRIDE_FRAMES: 50
+2025-05-10 19:43:16,349 - INFO - Detección iniciada
+2025-05-10 19:43:40,558 - INFO - Detección detenida

@@ -1,0 +1,93 @@
+2025-05-05 15:43:39,331 - INFO - Flask y SocketIO inicializados
+2025-05-05 15:43:39,432 - INFO - Firestore inicializado correctamente
+2025-05-05 15:43:39,528 - INFO - Modelo YOLOv8 cargado correctamente
+2025-05-05 15:43:42,206 - INFO - MobileNetV2 Embedder for Deep Sort initialised
+2025-05-05 15:43:42,206 - INFO - - gpu enabled: False
+2025-05-05 15:43:42,207 - INFO - - half precision: False
+2025-05-05 15:43:42,207 - INFO - - max batch size: 16
+2025-05-05 15:43:42,208 - INFO - - expects BGR: True
+2025-05-05 15:43:42,340 - INFO - DeepSort Tracker initialised
+2025-05-05 15:43:42,350 - INFO - - max age: 30
+2025-05-05 15:43:42,351 - INFO - - appearance threshold: 0.2
+2025-05-05 15:43:42,352 - INFO - - nms threshold: OFF
+2025-05-05 15:43:42,352 - INFO - - max num of appearance features: None
+2025-05-05 15:43:42,353 - INFO - - overriding track class : No
+2025-05-05 15:43:42,353 - INFO - - today given : No
+2025-05-05 15:43:42,354 - INFO - - in-build embedder : Yes
+2025-05-05 15:43:42,354 - INFO - - polygon detections : No
+2025-05-05 15:43:42,355 - INFO - DeepSort inicializado correctamente
+2025-05-05 15:43:44,128 - INFO - Modelo TimeSformer cargado correctamente
+2025-05-05 15:43:44,129 - INFO - Usando dispositivo: cpu
+2025-05-05 15:43:44,130 - INFO - Iniciando servidor Flask en puerto 5000
+2025-05-05 15:43:44,142 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.182.79:5000
+2025-05-05 15:43:44,143 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-05 15:43:44,217 - INFO - 192.168.182.79 - - [05/May/2025 15:43:44] "GET /socket.io/?EIO=4&transport=polling&t=hnrr9fpv HTTP/1.1" 200 -
+2025-05-05 15:43:44,252 - INFO - Cliente conectado
+2025-05-05 15:43:44,257 - INFO - 192.168.182.79 - - [05/May/2025 15:43:44] "POST /socket.io/?EIO=4&transport=polling&t=hnrzp0yb&sid=rukUVaP8QQV8-kC6AAAA HTTP/1.1" 200 -
+2025-05-05 15:43:44,263 - INFO - 192.168.182.79 - - [05/May/2025 15:43:44] "GET /socket.io/?EIO=4&transport=polling&t=hnrzqmr6&sid=rukUVaP8QQV8-kC6AAAA HTTP/1.1" 200 -
+2025-05-05 15:43:44,280 - INFO - 192.168.182.79 - - [05/May/2025 15:43:44] "GET /socket.io/?EIO=4&transport=polling&t=hns0kn7k&sid=rukUVaP8QQV8-kC6AAAA HTTP/1.1" 200 -
+2025-05-05 15:43:48,414 - INFO - 192.168.182.79 - - [05/May/2025 15:43:48] "GET /socket.io/?EIO=4&transport=websocket&sid=rukUVaP8QQV8-kC6AAAA HTTP/1.1" 200 -
+2025-05-05 15:43:48,588 - INFO - 192.168.182.79 - - [05/May/2025 15:43:48] "GET /socket.io/?EIO=4&transport=polling&t=hnvaf3rp HTTP/1.1" 200 -
+2025-05-05 15:43:48,778 - INFO - Cliente conectado
+2025-05-05 15:43:48,779 - INFO - 192.168.182.79 - - [05/May/2025 15:43:48] "POST /socket.io/?EIO=4&transport=polling&t=hnvhhd53&sid=yFI7Y1nni2QrUnOdAAAC HTTP/1.1" 200 -
+2025-05-05 15:43:48,790 - INFO - 192.168.182.79 - - [05/May/2025 15:43:48] "GET /socket.io/?EIO=4&transport=polling&t=hnvhsbx5&sid=yFI7Y1nni2QrUnOdAAAC HTTP/1.1" 200 -
+2025-05-05 15:43:48,877 - INFO - 192.168.182.79 - - [05/May/2025 15:43:48] "GET /socket.io/?EIO=4&transport=polling&t=hnvk9lfo&sid=yFI7Y1nni2QrUnOdAAAC HTTP/1.1" 200 -
+2025-05-05 15:43:48,940 - INFO - 192.168.182.79 - - [05/May/2025 15:43:48] "GET /socket.io/?EIO=4&transport=polling&t=hnvlzufi&sid=yFI7Y1nni2QrUnOdAAAC HTTP/1.1" 200 -
+2025-05-05 15:43:52,594 - INFO - 192.168.182.79 - - [05/May/2025 15:43:52] "GET /socket.io/?EIO=4&transport=websocket&sid=yFI7Y1nni2QrUnOdAAAC HTTP/1.1" 200 -
+2025-05-05 15:43:52,718 - INFO - 192.168.182.79 - - [05/May/2025 15:43:52] "GET /socket.io/?EIO=4&transport=polling&t=hnyimxma HTTP/1.1" 200 -
+2025-05-05 15:43:52,962 - INFO - Cliente conectado
+2025-05-05 15:43:52,965 - INFO - 192.168.182.79 - - [05/May/2025 15:43:52] "POST /socket.io/?EIO=4&transport=polling&t=hnypqh2y&sid=vnIOiDCI0PgzRIzYAAAE HTTP/1.1" 200 -
+2025-05-05 15:43:52,966 - INFO - 192.168.182.79 - - [05/May/2025 15:43:52] "GET /socket.io/?EIO=4&transport=polling&t=hnypqfs5&sid=vnIOiDCI0PgzRIzYAAAE HTTP/1.1" 200 -
+2025-05-05 15:43:53,044 - INFO - 192.168.182.79 - - [05/May/2025 15:43:53] "GET /socket.io/?EIO=4&transport=polling&t=hnys0h1p&sid=vnIOiDCI0PgzRIzYAAAE HTTP/1.1" 200 -
+2025-05-05 15:43:57,119 - INFO - 192.168.182.79 - - [05/May/2025 15:43:57] "GET /socket.io/?EIO=4&transport=websocket&sid=vnIOiDCI0PgzRIzYAAAE HTTP/1.1" 200 -
+2025-05-05 15:43:57,215 - INFO - 192.168.182.79 - - [05/May/2025 15:43:57] "GET /socket.io/?EIO=4&transport=polling&t=ho1zniao HTTP/1.1" 200 -
+2025-05-05 15:43:57,423 - INFO - Cliente conectado
+2025-05-05 15:43:57,425 - INFO - 192.168.182.79 - - [05/May/2025 15:43:57] "GET /socket.io/?EIO=4&transport=polling&t=ho25kl64&sid=fIOU_Uh2Y0SAatNNAAAG HTTP/1.1" 200 -
+2025-05-05 15:43:57,426 - INFO - 192.168.182.79 - - [05/May/2025 15:43:57] "POST /socket.io/?EIO=4&transport=polling&t=ho25kxx3&sid=fIOU_Uh2Y0SAatNNAAAG HTTP/1.1" 200 -
+2025-05-05 15:43:57,496 - INFO - 192.168.182.79 - - [05/May/2025 15:43:57] "GET /socket.io/?EIO=4&transport=polling&t=ho27oadm&sid=fIOU_Uh2Y0SAatNNAAAG HTTP/1.1" 200 -
+2025-05-05 15:43:57,575 - INFO - 192.168.182.79 - - [05/May/2025 15:43:57] "GET /socket.io/?EIO=4&transport=polling&t=ho29mr95&sid=fIOU_Uh2Y0SAatNNAAAG HTTP/1.1" 200 -
+2025-05-05 15:44:06,410 - INFO - FPS real de la cámara: 30.03003003003003
+2025-05-05 15:44:06,411 - INFO - Parámetros ajustados - FPS: 30.03003003003003, CLIP_FRAMES: 300, STRIDE_FRAMES: 60
+2025-05-05 15:44:06,432 - INFO - FPS real de la cámara: 30.03003003003003
+2025-05-05 15:44:06,433 - INFO - Parámetros ajustados - FPS: 30.03003003003003, CLIP_FRAMES: 300, STRIDE_FRAMES: 60
+2025-05-05 15:44:08,553 - WARNING - No se pudo capturar el frame
+2025-05-05 15:44:08,571 - INFO - Cámara liberada
+2025-05-05 15:44:08,575 - WARNING - No se pudo capturar el frame
+2025-05-05 15:44:08,582 - INFO - Cámara liberada
+2025-05-05 15:44:09,552 - INFO - FPS real de la cámara: 30.03003003003003
+2025-05-05 15:44:09,552 - INFO - Parámetros ajustados - FPS: 30.03003003003003, CLIP_FRAMES: 300, STRIDE_FRAMES: 60
+2025-05-05 15:44:11,521 - WARNING - No se pudo capturar el frame
+2025-05-05 15:44:11,529 - INFO - Cámara liberada
+2025-05-05 15:44:15,557 - INFO - FPS real de la cámara: 30.03003003003003
+2025-05-05 15:44:15,557 - INFO - Parámetros ajustados - FPS: 30.03003003003003, CLIP_FRAMES: 300, STRIDE_FRAMES: 60
+2025-05-05 15:44:18,926 - WARNING - No se pudo capturar el frame
+2025-05-05 15:44:18,940 - INFO - Cámara liberada
+2025-05-05 15:44:25,973 - INFO - 192.168.182.79 - - [05/May/2025 15:44:25] "GET /socket.io/?EIO=4&transport=websocket&sid=fIOU_Uh2Y0SAatNNAAAG HTTP/1.1" 200 -
+2025-05-05 15:44:26,223 - INFO - 192.168.182.79 - - [05/May/2025 15:44:26] "GET /socket.io/?EIO=4&transport=polling&t=hoocld43 HTTP/1.1" 200 -
+2025-05-05 15:44:26,631 - INFO - Cliente conectado
+2025-05-05 15:44:26,634 - INFO - 192.168.182.79 - - [05/May/2025 15:44:26] "POST /socket.io/?EIO=4&transport=polling&t=hooosogg&sid=x124I0mMgERijufZAAAI HTTP/1.1" 200 -
+2025-05-05 15:44:26,641 - INFO - 192.168.182.79 - - [05/May/2025 15:44:26] "GET /socket.io/?EIO=4&transport=polling&t=hoootre7&sid=x124I0mMgERijufZAAAI HTTP/1.1" 200 -
+2025-05-05 15:44:26,830 - INFO - 192.168.182.79 - - [05/May/2025 15:44:26] "GET /socket.io/?EIO=4&transport=polling&t=hoouip8t&sid=x124I0mMgERijufZAAAI HTTP/1.1" 200 -
+2025-05-05 15:44:26,920 - INFO - 192.168.182.79 - - [05/May/2025 15:44:26] "GET /socket.io/?EIO=4&transport=polling&t=hoowzc16&sid=x124I0mMgERijufZAAAI HTTP/1.1" 200 -
+2025-05-05 15:44:41,070 - INFO - FPS real de la cámara: 30.03003003003003
+2025-05-05 15:44:41,071 - INFO - Parámetros ajustados - FPS: 30.03003003003003, CLIP_FRAMES: 300, STRIDE_FRAMES: 60
+2025-05-05 15:44:42,970 - WARNING - No se pudo capturar el frame
+2025-05-05 15:44:42,977 - INFO - Cámara liberada
+2025-05-05 15:44:43,343 - INFO - Detección iniciada
+2025-05-05 15:44:52,941 - INFO - 192.168.182.79 - - [05/May/2025 15:44:52] "GET /socket.io/?EIO=4&transport=websocket&sid=x124I0mMgERijufZAAAI HTTP/1.1" 200 -
+2025-05-05 15:44:53,086 - INFO - 192.168.182.79 - - [05/May/2025 15:44:53] "GET /socket.io/?EIO=4&transport=polling&t=hp935ob2 HTTP/1.1" 200 -
+2025-05-05 15:44:53,333 - INFO - Cliente conectado
+2025-05-05 15:44:53,335 - INFO - 192.168.182.79 - - [05/May/2025 15:44:53] "POST /socket.io/?EIO=4&transport=polling&t=hp9amf2l&sid=CyPx08U7ZBkIhYU4AAAK HTTP/1.1" 200 -
+2025-05-05 15:44:53,336 - INFO - 192.168.182.79 - - [05/May/2025 15:44:53] "GET /socket.io/?EIO=4&transport=polling&t=hp9anzd2&sid=CyPx08U7ZBkIhYU4AAAK HTTP/1.1" 200 -
+2025-05-05 15:44:53,444 - INFO - 192.168.182.79 - - [05/May/2025 15:44:53] "GET /socket.io/?EIO=4&transport=polling&t=hp9dss3x&sid=CyPx08U7ZBkIhYU4AAAK HTTP/1.1" 200 -
+2025-05-05 15:44:53,566 - INFO - 192.168.182.79 - - [05/May/2025 15:44:53] "GET /socket.io/?EIO=4&transport=polling&t=hp9gy230&sid=CyPx08U7ZBkIhYU4AAAK HTTP/1.1" 200 -
+2025-05-05 15:45:08,180 - INFO - FPS real de la cámara: 30.03003003003003
+2025-05-05 15:45:08,181 - INFO - Parámetros ajustados - FPS: 30.03003003003003, CLIP_FRAMES: 300, STRIDE_FRAMES: 60
+2025-05-05 15:45:30,953 - WARNING - No se pudo capturar el frame
+2025-05-05 15:45:30,962 - INFO - Cámara liberada
+2025-05-05 15:45:44,817 - INFO - Detección iniciada
+2025-05-05 15:45:48,294 - INFO - Detección detenida
+2025-05-05 15:45:51,933 - INFO - 192.168.182.79 - - [05/May/2025 15:45:51] "GET /socket.io/?EIO=4&transport=websocket&sid=CyPx08U7ZBkIhYU4AAAK HTTP/1.1" 200 -

@@ -1,0 +1,258 @@
+# Documentación del Proyecto de Detección de Violencia Escolar
+
+## **Introducción**
+Este documento detalla el proceso de desarrollo, entrenamiento y optimización de un sistema de detección de violencia escolar en tiempo real, utilizando visión por computadora. El sistema integra tres componentes principales:
+
+1. **YOLOv8**: Para la detección de personas en video.
+2. **DeepSort**: Para el seguimiento de personas detectadas, asignando identificadores únicos (IDs).
+3. **TimeSformer**: Para la detección de violencia en clips de video.
+
+El objetivo es detectar eventos de violencia en tiempo real a través de una cámara IP, registrar los eventos en Firestore, y mostrar los resultados en un frontend. El proyecto se ha desarrollado iterativamente, con revisiones y ajustes para mejorar la precisión y el rendimiento en tiempo real.
+
+---
+
+## **1. Revisión del Proceso de Entrenamiento de los Modelos**
+
+### **1.1. Entrenamiento de YOLOv8 (Detección de Personas)**
+
+#### **Configuración del Entrenamiento**
+- **Modelo Base**: YOLOv8 preentrenado (`yolov8n.pt`).
+- **Dataset**:
+  - Ubicación: `/content/drive/MyDrive/Proyecto IA-3/violence_school_project/yolo_data/`.
+  - Estructura: Carpetas `train`, `val`, y `test`, con imágenes y etiquetas en formato YOLO.
+  - Clase: Solo "persona" (`classes=0`).
+- **Preprocesamiento**:
+  - Imágenes redimensionadas a 640x640 píxeles (`imgsz=640`), probablemente con padding para preservar la relación de aspecto (práctica estándar de Ultralytics).
+- **Hiperparámetros**:
+  - Épocas: 50.
+  - Tamaño del lote: 16.
+  - Learning rate inicial: 0.01.
+  - Optimizador: SGD.
+  - Aumentaciones: Rotación, cambio de brillo, ruido, etc.
+- **Dispositivo**: GPU (`cuda`).
+
+#### **Resultados**
+- **mAP@0.5**: 0.956 (muy bueno para detección de personas).
+- **Mejor Modelo**: Guardado como `best.pt`.
+
+#### **Observaciones**
+- El modelo mostró un buen rendimiento en el conjunto de test, pero en tiempo real las predicciones no eran tan precisas, probablemente debido a diferencias en las condiciones (iluminación, ángulos) y un preprocesamiento inadecuado en el prototipo (detallado más adelante).
+
+---
+
+### **1.2. Entrenamiento de TimeSformer (Detección de Violencia)**
+
+#### **Configuración del Entrenamiento**
+- **Modelo Base**: TimeSformer preentrenado (`best_timesformer_transfer.pt`), cargado desde `/content/drive/MyDrive/Proyecto IA-3/violence_school_project/models/timesformer/run_20250407_115035/`.
+- **Dataset**:
+  - Ubicación: `/content/drive/MyDrive/Proyecto IA-3/violence_school_project/timesformer_data/`.
+  - Estructura: Carpetas `train`, `val`, y `test`, con subcarpetas `violence` y `no_violence`.
+  - Formato: Videos en `.mp4` o `.avi`.
+  - Tamaño del Conjunto de Test: 300 videos.
+- **Preprocesamiento**:
+  - Número de frames por clip: 8 (`num_frames=8`).
+  - Resolución: 224x224 píxeles, con padding para preservar la relación de aspecto.
+  - Normalización: Usando `AutoImageProcessor` de Hugging Face.
+  - Formato de entrada: `(T, C, H, W) = (8, 3, 224, 224)`.
+- **Hiperparámetros**:
+  - Épocas: 10.
+  - Tamaño del lote: 1 (para evitar problemas de memoria).
+  - Learning rate inicial: 1e-5 (bajo, para *fine-tuning*).
+  - Optimizador: AdamW.
+  - Weight Decay: 0.2 (para mitigar *overfitting*).
+  - Scheduler: Linear con warmup (10% de los pasos).
+  - Early Stopping: Paciencia de 3 épocas.
+- **Congelamiento de Capas**:
+  - Congeladas: Todas las capas inicialmente.
+  - Descongeladas: Últimas 2 capas del backbone (`timesformer.encoder.layer[-2:]`) y el clasificador (`model.classifier`).
+- **Dispositivo**: GPU (`cuda`).
+
+#### **Resultados**
+- **Conjunto de Test**:
+  - Test Loss: 0.0870.
+  - Test Accuracy: 0.9733.
+  - Test Precision: 0.9797.
+  - Test Recall: 0.9667.
+  - Test F1-Score: 0.9732.
+- **Pruebas con Nuevos Datos**:
+  - 10 videos (5 de violencia, 5 de no violencia):
+    - Violencia: Probabilidades entre 0.7718 y 1.0000 (todas correctas).
+    - No violencia: Probabilidades entre 0.0000 y 0.0060 (todas correctas).
+- **Mejor Modelo**: Guardado como `best_timesformer_finetune.pt` y exportado a ONNX (`timesformer_finetuned.onnx`).
+
+#### **Observaciones**
+- El modelo mostró un excelente rendimiento en el conjunto de test y con nuevos datos.
+- Sin embargo, en tiempo real las predicciones no eran tan precisas, debido a:
+  - Falta de aumentaciones en el entrenamiento, lo que limitó la generalización a condiciones variables.
+  - Diferencia en el número de frames (4 en el prototipo inicial vs. 8 en el entrenamiento).
+  - Umbral de clasificación y zona de incertidumbre mal ajustados.
+
+---
+
+### **1.3. DeepSort (Seguimiento de Personas)**
+- **Configuración**:
+  - Usamos DeepSort directamente sin entrenamiento, con parámetros:
+    - `max_age=30`: Número de frames que una pista puede permanecer sin detecciones.
+    - `n_init=3`: Número de detecciones consecutivas para confirmar una pista.
+- **Integración**:
+  - DeepSort recibe las detecciones de YOLOv8 y asigna IDs a las personas detectadas.
+
+---
+
+## **2. Análisis del Prototipo Inicial**
+
+### **2.1. Código Inicial del Prototipo (`app.py`)**
+El prototipo inicial integraba YOLOv8, DeepSort y TimeSformer para procesar video en tiempo real desde una cámara IP (`http://192.168.1.6:8080/video`).
+
+#### **Configuración**
+- **Parámetros**:
+  - `CLIP_DURATION_SECONDS = 10`: Clips de 10 segundos.
+  - `FPS = 30`: Frames por segundo.
+  - `CLIP_FRAMES = 300`: Frames por clip.
+  - `STRIDE_FRAMES = 60`: TimeSformer se ejecuta cada 2 segundos.
+  - `TIMESFORMER_FPS = 15`, `NUM_FRAMES_TIMESFORMER = 4`: 4 frames por clip para TimeSformer.
+  - `THRESHOLD_VIOLENCE = 0.6`, `YOLO_CONF_THRESHOLD = 0.65`: Umbrales iniciales.
+- **Flask y SocketIO**: Para comunicación con el frontend.
+- **Firestore**: Para almacenar eventos de violencia.
+
+#### **Problemas Identificados**
+1. **YOLOv8**:
+   - **Redimensionamiento Incorrecto**:
+     - Los frames de 1280x720 se redimensionaban directamente a 640x640 con:
+       ```python
+       yolo_frame = cv2.resize(frame, (640, 640), interpolation=cv2.INTER_AREA)
+       ```
+     - Esto causaba distorsión (relación de aspecto 16:9 a 1:1), afectando las proporciones de las personas y, por ende, las predicciones.
+   - **Umbral Alto**:
+     - `YOLO_CONF_THRESHOLD = 0.65` era demasiado alto para tiempo real, causando falsos negativos.
+2. **TimeSformer**:
+   - **Número de Frames**:
+     - Usaba 4 frames por clip (`NUM_FRAMES_TIMESFORMER = 4`), mientras que el modelo fue entrenado con 8 frames.
+   - **Umbral y Zona de Incertidumbre**:
+     - `THRESHOLD_VIOLENCE = 0.6` y zona de incertidumbre (0.4 a 0.6) causaban falsos negativos.
+3. **Rendimiento**:
+   - YOLOv8 y DeepSort se ejecutaban en cada frame, lo que era intensivo.
+   - Los frames se enviaban al frontend en cada iteración, saturando el ancho de banda.
+
+---
+
+## **3. Optimizaciones y Ajustes**
+
+### **3.1. Ajustes Iniciales al Prototipo**
+- **YOLOv8**:
+  - Redujimos `YOLO_CONF_THRESHOLD` de 0.65 a 0.5 para aumentar la sensibilidad.
+  - Introdujimos `YOLO_PROCESS_INTERVAL = 3` para procesar YOLOv8 y DeepSort cada 3 frames, reduciendo la carga.
+- **TimeSformer**:
+  - Ajustamos `NUM_FRAMES_TIMESFORMER` de 4 a 8 para coincidir con el entrenamiento.
+  - Redujimos `THRESHOLD_VIOLENCE` de 0.6 a 0.5 y ajustamos la zona de incertidumbre a (0.45, 0.55).
+  - Optimizamos el muestreo de frames con `np.linspace` para que fuera uniforme.
+- **Rendimiento**:
+  - Introdujimos `FRAME_SEND_INTERVAL = 2` para enviar frames al frontend cada 2 frames.
+  - Redimensionamos los frames enviados a 480x360 para reducir el ancho de banda.
+
+### **3.2. Corrección del Redimensionamiento de YOLOv8**
+- **Problema**:
+  - El redimensionamiento directo a 640x640 causaba distorsión, afectando las predicciones.
+- **Solución**:
+  - Implementamos `preprocess_frame_for_yolo`:
+    ```python
+    def preprocess_frame_for_yolo(frame, target_size=(640, 640)):
+        h, w = frame.shape[:2]
+        target_h, target_w = target_size
+        ratio = min(target_w / w, target_h / h)
+        new_w, new_h = int(w * ratio), int(h * ratio)
+        resized_frame = cv2.resize(frame, (new_w, new_h), interpolation=cv2.INTER_AREA)
+        padded_frame = np.zeros((target_h, target_w, 3), dtype=np.uint8)
+        pad_top = (target_h - new_h) // 2
+        pad_left = (target_w - new_w) // 2
+        padded_frame[pad_top:pad_top + new_h, pad_left:pad_left + new_w] = resized_frame
+        return padded_frame
+    ```
+  - Esto redimensiona la imagen de 1280x720 a 640x360 (manteniendo la relación de aspecto) y agrega padding para alcanzar 640x640.
+- **Impacto**:
+  - Elimina la distorsión, mejora la precisión de las detecciones de YOLOv8.
+
+### **3.3. Mejoras Finales al Prototipo**
+- **Logging**:
+  - Configuramos logging para guardar logs en un archivo con timestamp y formato detallado.
+- **Manejo de Errores**:
+  - Agregamos manejo de excepciones en la carga de modelos y captura de video.
+- **Confirmación de FPS**:
+  - Verificamos el FPS real de la cámara.
+- **Documentación**:
+  - Agregamos comentarios detallados a las funciones.
+- **Liberación de Recursos**:
+  - Aseguramos que la cámara se libere incluso si hay errores.
+
+---
+
+## **4. Estado Final del Prototipo**
+
+### **4.1. Código Final (`app.py`)**
+El prototipo final está optimizado y listo para pruebas en tiempo real. A continuación, se detalla su estructura:
+
+- **Parámetros**:
+  - `CLIP_DURATION_SECONDS = 10`, `FPS = 30`, `CLIP_FRAMES = 300`, `STRIDE_FRAMES = 60`.
+  - `TIMESFORMER_FPS = 15`, `NUM_FRAMES_TIMESFORMER = 8`.
+  - `THRESHOLD_VIOLENCE = 0.5`, `YOLO_CONF_THRESHOLD = 0.5`.
+  - `YOLO_PROCESS_INTERVAL = 3`, `FRAME_SEND_INTERVAL = 2`.
+- **YOLOv8**:
+  - Preprocesamiento con `preprocess_frame_for_yolo`, que preserva la relación de aspecto.
+  - Procesamiento cada 3 frames.
+- **TimeSformer**:
+  - Preprocesamiento con `preprocess_frames_for_timesformer`, que usa 8 frames y preserva la relación de aspecto.
+  - Umbral ajustado a 0.5 con zona de incertidumbre (0.45, 0.55).
+- **DeepSort**:
+  - Sincronizado con YOLOv8 (cada 3 frames).
+- **Rendimiento**:
+  - Frames enviados al frontend cada 2 frames a 480x360.
+- **Logging y Errores**:
+  - Logging detallado en archivo y consola.
+  - Manejo de excepciones robusto.
+
+### **4.2. Instrucciones para Probar**
+1. **Ejecutar el Servidor**:
+   ```powershell
+   cd C:\GONZALES\Proyecto-IA3\violence-detection-prototype\backend
+   python app.py
+   ```
+2. **Acceder al Frontend**:
+   - Abre `http://127.0.0.1:5000` en un navegador.
+   - Haz clic en "Iniciar Detección".
+3. **Evaluar Resultados**:
+   - Verifica las detecciones de personas (YOLOv8), el seguimiento (DeepSort), y la detección de violencia (TimeSformer).
+   - Ajusta umbrales si es necesario (`YOLO_CONF_THRESHOLD`, `THRESHOLD_VIOLENCE`).
+
+---
+
+## **5. Conclusiones y Próximos Pasos**
+
+### **5.1. Conclusiones**
+- **YOLOv8**:
+  - El modelo fue entrenado con éxito (mAP@0.5 de 0.956), pero el redimensionamiento directo en el prototipo inicial causaba distorsión, afectando las predicciones en tiempo real.
+  - La corrección del preprocesamiento (usando padding) resolvió este problema.
+- **TimeSformer**:
+  - Entrenado con éxito (F1-Score de 0.9732), pero las predicciones en tiempo real se veían afectadas por la falta de aumentaciones, el número incorrecto de frames, y umbrales mal ajustados.
+  - Los ajustes en el prototipo (8 frames, umbral de 0.5) mejoraron su rendimiento.
+- **DeepSort**:
+  - Funciona correctamente para el seguimiento, y su sincronización con YOLOv8 optimizó el rendimiento.
+- **Prototipo**:
+  - Ahora está optimizado para tiempo real, con un preprocesamiento correcto, umbrales ajustados, y un manejo eficiente de recursos.
+
+### **5.2. Próximos Pasos**
+- **Pruebas en Tiempo Real**:
+  - Evaluar el prototipo para identificar falsos positivos/negativos.
+  - Ajustar umbrales si es necesario.
+- **Reentrenamiento**:
+  - Si las predicciones no son satisfactorias, reentrenar YOLOv8 y TimeSformer con aumentaciones (cambios de iluminación, desenfoque, etc.) para mejorar la generalización.
+- **Optimización Adicional**:
+  - Reducir el FPS o aumentar `YOLO_PROCESS_INTERVAL` si hay retrasos.
+- **Documentación Continua**:
+  - Mantener un registro de todas las iteraciones y ajustes futuros.
+
+---
+
+## **6. Notas Finales**
+Este proyecto es a largo plazo, y esta documentación servirá como base para futuras iteraciones. Todos los detalles discutidos, desde el entrenamiento hasta las optimizaciones del prototipo, han sido registrados para referencia. Como ingenieros, hemos aprendido la importancia de prestar atención a detalles como el preprocesamiento de imágenes, que pueden tener un impacto significativo en el rendimiento del sistema.
+
+**Fecha de Documentación**: 10 de abril de 2025.

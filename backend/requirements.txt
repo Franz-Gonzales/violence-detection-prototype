@@ -1,0 +1,10 @@
+opencv-python
+numpy
+Flask
+flask-socketio
+ultralytics
+deep-sort-realtime
+onnxruntime
+torch 
+# torch==1.12.1+cu117
+firebase-admin
