@@ -65,3 +65,15 @@
 - scp -P 40184 app.py root@213.192.2.78:/root/
 - nohup python3 /root/app.py &  -> ejecutar en segundo plano
 - cat nohup.out  -> verificar los logs
+
+# Para ejecutar el proyecto
+- uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+
+# para detectar el dispositivo de alarma
+- pip install tinytuya
+- python -m tinytuya scan
+- python -m tinytuya wizard
+
+senmpkvtvguawcydwrxr
+0943972feb654916ae352330e866a442

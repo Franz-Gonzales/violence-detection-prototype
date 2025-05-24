@@ -1,0 +1,19 @@
+[
+    {
+        "name": "Audible alarm",
+        "id": "eb799c3ee9c924555eareu",
+        "key": ":s;oN`Yd45{*BzC6",
+        "mac": "c0:f8:53:3a:7e:24",
+        "uuid": "c1c73e427952d3ec",
+        "category": "sgbj",
+        "product_name": "Audible alarm",
+        "product_id": "rkjxolhpjhuzv978",
+        "biz_type": 18,
+        "model": "",
+        "sub": false,
+        "icon": "https://images.tuyaus.com/smart/icon/ay1503986080106Gppjy/d92c93b96ba6defc652d6c3a2f7bcbec.png",
+        "mapping": {},
+        "ip": "192.168.1.9",
+        "version": "3.5"
+    }
+]

@@ -1,0 +1,38 @@
+{
+    "result": [
+        {
+            "active_time": 1748034031,
+            "biz_type": 18,
+            "category": "sgbj",
+            "create_time": 1748034031,
+            "icon": "smart/icon/ay1503986080106Gppjy/d92c93b96ba6defc652d6c3a2f7bcbec.png",
+            "id": "eb799c3ee9c924555eareu",
+            "ip": "181.115.171.190",
+            "lat": "-19.01",
+            "local_key": ":s;oN`Yd45{*BzC6",
+            "lon": "-65.28",
+            "model": "",
+            "name": "Audible alarm",
+            "online": true,
+            "owner_id": "249672894",
+            "product_id": "rkjxolhpjhuzv978",
+            "product_name": "Audible alarm",
+            "sub": false,
+            "time_zone": "-04:00",
+            "uid": "az1748030747059AsA4V",
+            "update_time": 1748055358,
+            "uuid": "c1c73e427952d3ec",
+            "mapping": {}
+        }
+    ],
+    "success": true,
+    "t": 1748061911697,
+    "tid": "e0606511385911f0a8a396867ed24c6e",
+    "file": {
+        "name": "tuya-raw.json",
+        "description": "Full raw list of Tuya devices.",
+        "account": "senmpkvtvguawcydwrxr",
+        "date": "2025-05-24T00:45:13.610605",
+        "tinytuya": "1.16.3"
+    }
+}
